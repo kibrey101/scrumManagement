@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>What is Scrum?</h1>
+    <p>Scrum is a framework for developing and sustaining complex products. This definition consists of Scrum’s roles, events, artifacts, and the rules that bind them together. Ken Schwaber and Jeff Sutherland developed Scrum. Together, they stand behind the Scrum Guide.</p>
+    <p><a href="http://www.scrumguides.org/history.html" class="btn btn-primary btn-lg">Scrum History &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-lg-2">
+        <h2>The Scrum guide</h2>
+        <p>
+            Read the official Scrum Guide online
+        </p>
+        <p><a class="btn btn-default" href="http://www.scrumguides.org/scrum-guide.html">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-lg-2">
+        <h2>On-going projects</h2>
+        <p>This web-app tracks and manage scrum projects</p>
+        <p><a class="btn btn-default" @Html.ActionLink("Scrum Projects", "Index", "Projects")</a></p>
+    </div>
+    <div class="col-lg-2">
+        <h2>Who's Scrumming</h2>
+        <p>Check the scrummin people</p>
+        <p><a class="btn btn-default" @Html.ActionLink("The Scrum Team", "Index", "People")</a></p>
+    </div>
+</div>

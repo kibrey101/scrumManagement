@@ -1,0 +1,44 @@
+﻿@model RamboScrum.Models.Project
+
+@{
+    ViewBag.Title = "Edit";
+}
+<div class="col-lg-6">
+    <div class="panel panel-default margin-bottom-40">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-tasks"></i> Edit <small>@Html.DisplayFor(model => model.project_name)</small></h3>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.project_id)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.definition_of_done_id, "Definition of done ID:"@*, htmlAttributes: new { @class = "control-label col-md-2" }*@)
+                        @Html.DropDownList("definition_of_done_id", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.definition_of_done_id, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.project_name, "Project Name:")
+                        @Html.EditorFor(model => model.project_name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.project_name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    @Html.ActionLink("Back", "Index", "Projects", new { @class = "btn btn-default" })
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

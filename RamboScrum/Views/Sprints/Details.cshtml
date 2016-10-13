@@ -1,0 +1,128 @@
+﻿@model RamboScrum.Models.Sprint
+
+@{
+    ViewBag.Title = "Details";
+}
+
+    <style>
+    h4 {
+        font-weight: bold;
+    }
+</style>
+<h2>Sprint details</h2>
+
+<hr />
+<div class="row" style="padding:0;margin:0;">
+    <h4 class="col-sm-4 col-lg-2" style="float:left">@Html.DisplayNameFor(model => model.sprint_name)</h4>
+    <h4 style="float:left">@Html.DisplayFor(model => model.sprint_name)</h4>
+</div>
+<div class="row" style="padding:0;margin:0;">
+    <h4 class="col-sm-4 col-lg-2" style="float:left">@Html.DisplayNameFor(model => model.start_date)</h4>
+    <h4 style="float:left">@Html.DisplayFor(model => model.start_date)</h4>
+</div>
+<div class="row" style="padding:0;margin:0;">
+    <h4 class="col-sm-4 col-lg-2" style="float:left">@Html.DisplayNameFor(model => model.end_date)</h4>
+    <h4 style="float:left">@Html.DisplayFor(model => model.end_date)</h4>
+</div>
+<div class="row" style="padding:0;margin:0;">
+    <h4 class="col-sm-4 col-lg-2" style="float:left">@Html.DisplayNameFor(model => model.Project.project_name)</h4>
+    <h4 style="float:left">@Html.DisplayFor(model => model.Project.project_name)</h4>
+</div>
+<hr />
+    <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#pblitems" aria-controls="pblitems" role="tab" data-toggle="tab">PBLITEMS</a></li>
+    <li role="presentation"><a href="#meetings" aria-controls="meetings" role="tab" data-toggle="tab">MEETINGS</a></li>
+</ul>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="pblitems">
+        <div class="row" style="margin-top:20px;">
+            <div class="col-md-6">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                PBL item name
+                            </th>
+                            <th>
+                                Priority
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                Estimated Hours
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.PBLItems)
+                        {
+                            @Html.Partial("_SprintPBLItems", item)
+                        }
+                    </tbody>
+                </table>
+                <p>
+                    @Html.ActionLink("Add a new PBL item", "Create", "PBLItems", null, new { @class = "btn btn-primary" })
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="meetings">
+        <div class="row" style="margin-top:20px;">
+            <div class="col-md-6">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                Meeting type
+                            </th>
+                            <th>
+                                Start time
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Meetings)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink(item.MeetingType.meeting_type_name, "Details", "Sprints", new { id = item.sprint_id }, null)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => modelItem.start_date)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Delete", "Delete", "Sprints", new { id = item.sprint_id }, null)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <p>
+                    @Html.ActionLink("Edit Project", "Edit", new { id = Model.project_id }, new { @class = "btn btn-info" })
+
+
+  
+
+                    @Html.ActionLink("Add a new meeting", "Create", "Meetings", new { sprint_id = Model.sprint_id }, new { @class = "btn btn-primary" })
+
+                    @Html.ActionLink("Back to Projects", "Index", null, new { @class = "btn btn-default" })
+                   
+                </p>
+            </div>
+        </div>
+    </div>
+  </div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.sprint_id }) |
+    @Html.ActionLink("Back to Project Details", "Details", "Projects", new { id = Model.project_id }, null)
+</p>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery-2.1.4.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/ramboScripts.js"></script>
+}

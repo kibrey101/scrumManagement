@@ -1,0 +1,45 @@
+﻿@model IEnumerable<RamboScrum.Models.ProjectRoleAssignment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Person.first_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Project.project_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScrumRoleType.scrum_role_type_name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Person.first_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.project_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScrumRoleType.scrum_role_type_name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  project_id = item.project_id, role_id = item.scrum_role_type_id, person_id = item.person_id }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

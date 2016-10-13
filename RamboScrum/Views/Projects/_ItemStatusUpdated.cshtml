@@ -1,0 +1,12 @@
+﻿@model RamboScrum.Models.PBLItem
+
+@using (Ajax.BeginForm(
+   "UpdateStatus",
+   "Projects",
+   new { pblItem_id = Model.pbl_item_id },
+   new AjaxOptions { UpdateTargetId = "pblStatus_" + Model.pbl_item_id, HttpMethod = "POST", InsertionMode = InsertionMode.Replace }, null))
+{
+        @Html.AntiForgeryToken()
+        @Html.DropDownListFor(m => m.status_id, null, new { @class = "form-control " + ViewBag.myClass, @onchange = "$(this.form).submit();" })
+}
+

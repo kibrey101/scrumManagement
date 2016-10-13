@@ -1,0 +1,157 @@
+﻿@model RamboScrum.Models.Project
+
+@{
+    ViewBag.Title = "Details";
+}
+    <div class="row" style="margin: 30px 0 30px 0;">
+        <div class="col-lg-12">
+            <h2>PROJECT NAME: @Html.DisplayFor(model => model.project_name)</h2>
+            <h3>DEFINITION OF DONE: @Html.ActionLink(Model.DefinitionOfDone.definition_of_done_source, "Details", "DefinitionOfDones", new { id = Model.definition_of_done_id}, null)</h3>
+            @Html.ActionLink("Edit Project", "Edit", new { id = Model.project_id }, new { @class = "btn btn-info" })
+            @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-default" })
+        </div>
+        
+
+</div>
+    <ul class="nav nav-tabs rambo" role="tablist">
+        <li role="presentation" class="active"><a href="#pblitems" aria-controls="pblitems" role="tab" data-toggle="tab">PBLITEMS</a></li>
+        <li role="presentation"><a href="#sprints" aria-controls="sprints" role="tab" data-toggle="tab">SPRINTS</a></li>
+        <li role="presentation"><a href="#people" aria-controls="people" role="tab" data-toggle="tab">PROJECT ROLE ASSIGNMENTS</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="pblitems">
+            <div class="row" style="margin-top:20px;">
+                <div class="col-md-8">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    PBL item name
+                                </th>
+                                <th>
+                                    Priority
+                                </th>
+                                <th>
+                                    Status
+                                </th>
+                                <th>
+                                    Estimated Hours
+                                </th>
+                                <th>
+                                    PBL item sprint
+                                </th>
+                                <th>Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.PBLItems)
+                            {
+                                @Html.Partial("_ProjectPBLItems", item)
+                            }
+                        </tbody>
+                    </table>
+                    <p>
+                        @Html.ActionLink("Add new PBL item", "CreateForProject", "PBLItems", new { project_id = Model.project_id }, new { @class = "btn btn-primary"})
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="sprints">
+            <div class="row" style="margin-top:20px;">
+                <div class="col-md-6">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Sprint name
+                                </th>
+                                <th>
+                                    Start date
+                                </th>
+                                <th>
+                                    End date
+                                </th>
+                                <th>
+                                    Options
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Sprints)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.ActionLink(item.sprint_name, "Details", "Sprints", new { id = item.sprint_id }, new { @class = "btn rambo" })
+                                    </td>
+                                    <td>
+                                        @item.start_date
+                                    </td>
+                                    <td>
+                                        @item.end_date
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "EditForProject", "Sprints", new { sprint_id = item.sprint_id, project_id = Model.project_id }, new { @class = "btn btn-info" })
+                                        @Html.ActionLink("Delete", "Delete", "Sprints", new { id = item.sprint_id, project_id = Model.project_id }, new { @class = "btn btn-danger" })
+                                    </td>
+                                </tr>
+                            }                          
+                        </tbody>
+                    </table>
+                    <p>
+                        @Html.ActionLink("Add Sprint", "CreateForProject", "Sprints", new { project_id = Model.project_id }, new { @class = "btn btn-primary" })
+                        
+                        @Html.ActionLink("Back to Projects", "Index", null, new { @class = "btn btn-default" })
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="people">
+            <div class="row" style="margin-top:20px;">
+                <div class="col-md-4">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Project role
+                                </th>
+                                <th>
+                                    Person respnsible
+                                </th>
+                                <th class="text-center">
+                                    
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.ProjectRoleAssignments)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ScrumRoleType.scrum_role_type_name)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink(item.Person.first_name + " " + item.Person.last_name, "Details", "People", new { id = item.person_id }, new { @class = "btn rambo" })
+                                    </td>
+                                    <td align="center">
+                                        @Html.ActionLink("Edit", "EditProjectRole", "ProjectRoleAssignments", new {project_id = item.project_id,person_id = item.person_id, role_id = item.scrum_role_type_id }, new { @class = "btn btn-info" })
+                                        @Html.ActionLink("Delete role", "DeleteRole", "ProjectRoleAssignments", new { project_id = item.project_id, person_id = item.person_id, role_id = item.scrum_role_type_id }, new { @class = "btn btn-danger" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @Html.ActionLink("Add new role", "CreateNewRole", "ProjectRoleAssignments", new { project_id = Model.project_id}, new { @class = "btn btn-primary" })
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+    @section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery-2.1.4.js"></script>  
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/ramboScripts.js"></script>
+    }

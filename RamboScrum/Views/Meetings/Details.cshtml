@@ -1,0 +1,43 @@
+﻿@model RamboScrum.Models.Meeting
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Meeting</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.start_time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.start_time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MeetingType.meeting_type_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeetingType.meeting_type_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sprint.sprint_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sprint.sprint_name)
+        </dd>
+
+    </dl>
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.meeting_id }) |
+    @Html.ActionLink("Back to Sprint details", "Details", "Sprints", new { id = Model.sprint_id }, null)
+</p>

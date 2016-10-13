@@ -1,0 +1,51 @@
+﻿@model IEnumerable<RamboScrum.Models.Sprint>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.sprint_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.start_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.end_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Project.project_name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.sprint_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.start_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.end_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.project_name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.sprint_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.sprint_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.sprint_id })
+        </td>
+    </tr>
+}
+
+</table>

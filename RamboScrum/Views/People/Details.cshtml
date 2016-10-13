@@ -1,0 +1,109 @@
+﻿@model RamboScrum.Models.Person
+
+@{
+    ViewBag.Title = "Details";
+
+}
+
+
+    <div class="row">
+    <div class="col-lg-6">
+                <h1 class="page-header">@Html.DisplayFor(model => model.first_name) @Html.DisplayFor(model => model.last_name) </h1>
+                <img  src="~/Photos/donald-trump.jpg" class="img-responsive col-lg-4" />
+                <h3 style="margin-top: 2em;">Phone Number: @Html.DisplayFor(model => model.phone)</h3>
+                <h3>Email: @Html.DisplayFor(model => model.email) </h3>
+        </div>
+    </div>
+        <!-- tab start-->
+<div class="row">
+    <div class="col-md-8">
+        <ul style="margin-top: 3em;" class="nav nav-tabs rambo" role="tablist">
+            <li role="presentation" class="active"><a href="#tasks" aria-controls="tasks" role="tab" data-toggle="tab">Tasks Assigned</a></li>
+            <li role="presentation"><a href="#projects" aria-controls="projects" role="tab" data-toggle="tab">Projects</a></li>
+
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="tasks">
+
+                <h2>Assigned Tasks</h2>
+                <table class="table table-hover table-bordered">
+                    <tr>
+                        <th>Task name</th>
+                        <th>Status</th>
+                        <th>Estimated hours</th>
+                        <th>Priority</th>
+                        <th>PBL Item</th>
+                        <th>Completion date</th>
+                        <th>Assignment date</th>
+                    </tr>
+                    
+                    @foreach (var item in Model.Tasks)
+                    {
+                        <tr>
+                            <td>
+                                @Html.ActionLink(item.name, "Details", "Tasks", new { id = item.task_id }, new { @class = "btn rambo" })
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status.status1)
+                            </td>
+                            <td class="text-center">
+                                @Html.DisplayFor(modelItem => item.estimated_hours)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.task_priority)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PBLItem.name)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.assignment_date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.completion_date)
+                            </td>
+
+
+                        </tr>
+                    }
+                </table>
+                <div class="col-md-6">
+                    @Html.ActionLink("Create Task For " + Model.first_name, "CreateForPerson", "Tasks", new { person_id = Model.person_id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.person_id }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Back to people", "Index", null, new { @class = "btn btn-default" })
+                </div>
+            </div>
+
+
+
+            <div role="tabpanel" class="tab-pane" id="projects">
+
+
+                <h2>Projects participating</h2>
+
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Project Name</th>
+                        <th>Role</th>
+                    </tr>
+
+                    @foreach (var item in Model.ProjectRoleAssignments)
+                    {
+                        <tr>
+                            <td>
+                                @Html.ActionLink(item.Project.project_name, "Details", "Projects", new { id = item.project_id }, new { @class = "btn rambo" })
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ScrumRoleType.scrum_role_type_name)
+                            </td>
+
+                        </tr>
+
+                    }
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

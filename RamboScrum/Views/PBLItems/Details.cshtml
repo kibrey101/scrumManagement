@@ -1,0 +1,83 @@
+﻿@model RamboScrum.Models.PBLItem
+
+@{
+    ViewBag.Title = "Details";
+}
+<style>
+    h4 {font-weight:bold;}
+</style>
+<h2>PBL item details</h2>
+
+    
+    <hr />
+    <div class="row" style="padding:0;margin:0;">
+        <h4 class="col-sm-4 col-lg-2" style="float:left">@Html.DisplayNameFor(model => model.name)</h4>
+        <h4 style="float:left">@Html.DisplayFor(model => model.name)</h4>
+    </div>
+    <div class="row" style="padding:0;margin:0;">
+        <h4 class="col-sm-4 col-lg-2" style="float:left">@Html.DisplayNameFor(model => model.item_description)</h4>
+        <h4 style="float:left">@Html.DisplayFor(model => model.item_description)</h4>
+    </div>
+    <div class="row" style="padding:0;margin:0;">
+        <h4 class="col-sm-4 col-lg-2" style="float:left">@Html.DisplayNameFor(model => model.item_priority)</h4>
+        <h4 style="float:left">@Html.DisplayFor(model => model.item_priority)</h4>
+    </div>
+    <div class="row" style="padding:0;margin:0;">
+        <h4 class="col-sm-4 col-lg-2" style="float:left">@Html.DisplayNameFor(model => model.estimated_hours)</h4>
+        <h4 style="float:left">@Html.DisplayFor(model => model.estimated_hours)</h4>
+    </div><div class="row" style="padding:0;margin:0;">
+        <h4 class="col-sm-4 col-lg-2" style="float:left">@Html.DisplayNameFor(model => model.Project.project_name)</h4>
+        <h4 style="float:left">@Html.DisplayFor(model => model.Project.project_name)</h4>
+    </div>
+    <div class="row" style="padding:0;margin:0;">
+        <h4 class="col-sm-4 col-lg-2" style="float:left">@Html.DisplayNameFor(model => model.Status.status1)</h4>
+        <h4 style="float:left">@Html.DisplayFor(model => model.Status.status1)</h4>
+    </div>
+    <div class="row" style="padding:0;margin:0;">
+         <h4 class="col-sm-4 col-lg-2" style="float:left">@Html.DisplayNameFor(model => model.Sprint.sprint_name)</h4>
+         <h4 style="float:left">@Html.DisplayFor(model => model.Sprint.sprint_name)</h4>
+    </div>
+<hr />
+    <table class="table table-striped">
+        <tr>
+            <th>Task name</th>
+            <th>Status</th>
+            <th>Estimated hours</th>
+            <th>Priority</th>
+            <th>Assignment date</th>
+            <th>Completion date</th>
+            <th>Person responsible</th>
+        </tr>
+        @foreach(var item in Model.Tasks)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.name, "Details", "Tasks", new { id = item.task_id }, new { @class = "btn rambo" })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status.status1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estimated_hours)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.task_priority)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.assignment_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.completion_date)
+                </td>
+                <td>
+                    <a class="btn rambo" href="~/People/Details/@Html.DisplayFor(modelItem => item.Person.person_id)">@Html.DisplayFor(modelItem => item.Person.first_name)  @Html.DisplayFor(modelItem => item.Person.last_name)</a>
+                </td>
+            </tr>
+        }
+    </table>
+
+    <div class="row">
+        @Html.ActionLink("Edit item", "EditForProject", new { item_id = Model.pbl_item_id, project_id = Model.project_id }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Back to project details", "Details", "Projects", new { id = Model.project_id }, new { @class = "btn btn-success" })
+    </div>
+

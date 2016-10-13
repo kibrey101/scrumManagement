@@ -1,0 +1,26 @@
+﻿@model RamboScrum.Models.DefinitionOfDone
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DefinitionOfDone</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.definition_of_done_source)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.definition_of_done_source)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.definition_of_done_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

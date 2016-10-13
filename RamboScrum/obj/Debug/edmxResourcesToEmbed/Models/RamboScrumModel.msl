@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ScrumDatabaseModelStoreContainer" CdmEntityContainer="ScrumDatabaseEntities1">
+    <EntitySetMapping Name="DefinitionOfDones">
+      <EntityTypeMapping TypeName="ScrumDatabaseModel.DefinitionOfDone">
+        <MappingFragment StoreEntitySet="DefinitionOfDone">
+          <ScalarProperty Name="definition_of_done_source" ColumnName="definition_of_done_source" />
+          <ScalarProperty Name="definition_of_done_id" ColumnName="definition_of_done_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Meetings">
+      <EntityTypeMapping TypeName="ScrumDatabaseModel.Meeting">
+        <MappingFragment StoreEntitySet="Meeting">
+          <ScalarProperty Name="meeting_id" ColumnName="meeting_id" />
+          <ScalarProperty Name="meeting_type_id" ColumnName="meeting_type_id" />
+          <ScalarProperty Name="sprint_id" ColumnName="sprint_id" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MeetingTypes">
+      <EntityTypeMapping TypeName="ScrumDatabaseModel.MeetingType">
+        <MappingFragment StoreEntitySet="MeetingType">
+          <ScalarProperty Name="meeting_type_id" ColumnName="meeting_type_id" />
+          <ScalarProperty Name="meeting_type_name" ColumnName="meeting_type_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PBLItems">
+      <EntityTypeMapping TypeName="ScrumDatabaseModel.PBLItem">
+        <MappingFragment StoreEntitySet="PBLItem">
+          <ScalarProperty Name="pbl_item_id" ColumnName="pbl_item_id" />
+          <ScalarProperty Name="project_id" ColumnName="project_id" />
+          <ScalarProperty Name="sprint_id" ColumnName="sprint_id" />
+          <ScalarProperty Name="status_id" ColumnName="status_id" />
+          <ScalarProperty Name="item_priority" ColumnName="item_priority" />
+          <ScalarProperty Name="estimated_hours" ColumnName="estimated_hours" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="item_description" ColumnName="item_description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="ScrumDatabaseModel.Person">
+        <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Projects">
+      <EntityTypeMapping TypeName="ScrumDatabaseModel.Project">
+        <MappingFragment StoreEntitySet="Project">
+          <ScalarProperty Name="project_id" ColumnName="project_id" />
+          <ScalarProperty Name="definition_of_done_id" ColumnName="definition_of_done_id" />
+          <ScalarProperty Name="project_name" ColumnName="project_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectRoleAssignments">
+      <EntityTypeMapping TypeName="ScrumDatabaseModel.ProjectRoleAssignment">
+        <MappingFragment StoreEntitySet="ProjectRoleAssignment">
+          <ScalarProperty Name="project_id" ColumnName="project_id" />
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+          <ScalarProperty Name="scrum_role_type_id" ColumnName="scrum_role_type_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScrumRoleTypes">
+      <EntityTypeMapping TypeName="ScrumDatabaseModel.ScrumRoleType">
+        <MappingFragment StoreEntitySet="ScrumRoleType">
+          <ScalarProperty Name="scrum_role_type_id" ColumnName="scrum_role_type_id" />
+          <ScalarProperty Name="scrum_role_type_name" ColumnName="scrum_role_type_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sprints">
+      <EntityTypeMapping TypeName="ScrumDatabaseModel.Sprint">
+        <MappingFragment StoreEntitySet="Sprint">
+          <ScalarProperty Name="sprint_id" ColumnName="sprint_id" />
+          <ScalarProperty Name="sprint_name" ColumnName="sprint_name" />
+          <ScalarProperty Name="project_id" ColumnName="project_id" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Status">
+      <EntityTypeMapping TypeName="ScrumDatabaseModel.Status">
+        <MappingFragment StoreEntitySet="Status">
+          <ScalarProperty Name="status_id" ColumnName="status_id" />
+          <ScalarProperty Name="status1" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tasks">
+      <EntityTypeMapping TypeName="ScrumDatabaseModel.Task">
+        <MappingFragment StoreEntitySet="Task">
+          <ScalarProperty Name="task_id" ColumnName="task_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="task_description" ColumnName="task_description" />
+          <ScalarProperty Name="estimated_hours" ColumnName="estimated_hours" />
+          <ScalarProperty Name="task_priority" ColumnName="task_priority" />
+          <ScalarProperty Name="pbl_item_id" ColumnName="pbl_item_id" />
+          <ScalarProperty Name="status_id" ColumnName="status_id" />
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+          <ScalarProperty Name="assignment_date" ColumnName="assignment_date" />
+          <ScalarProperty Name="completion_date" ColumnName="completion_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

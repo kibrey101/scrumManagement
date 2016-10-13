@@ -1,0 +1,86 @@
+﻿@model IEnumerable<RamboScrum.Models.Task>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (ViewBag.pblItemId != null)
+{
+    @Html.ActionLink("Go back to PBLitem", "Details", "PBLItems", new { id = ViewBag.pblItemId }, null)
+}
+
+<h2>Task List</h2>
+
+<p>
+    @Html.ActionLink("Create New Task", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.task_description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estimated_hours)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.task_priority)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.assignment_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.completion_date)
+        </th>
+        <th>
+            PBL Item 
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Person.first_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status.status1)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.task_description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estimated_hours)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.task_priority)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.assignment_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.completion_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PBLItem.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Person.first_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status.status1)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.task_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.task_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.task_id })
+        </td>
+    </tr>
+}
+
+</table>

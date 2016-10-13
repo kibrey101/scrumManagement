@@ -1,0 +1,38 @@
+﻿@model RamboScrum.Models.PBLItem
+           @if(Model == null){
+              @Html.ActionLink("Add a new sprint", "Create", "PBLItems", null)
+           }
+           else
+           {
+            <tr>
+                <td>
+                    @Html.ActionLink(Model.name, "Details", "PBLItems", new { id = Model.pbl_item_id }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.item_priority)
+                </td >
+               
+                 @using (Ajax.BeginForm(
+                   "UpdateStatus",
+                   "Projects",
+                   new { pblItem_id = Model.pbl_item_id },
+                   new AjaxOptions { UpdateTargetId = "pblStatus_" + Model.pbl_item_id, HttpMethod = "POST", InsertionMode = InsertionMode.Replace }, null))
+                 {
+                    <td id="pblStatus_@Model.pbl_item_id">
+                        @Html.AntiForgeryToken()
+                        @Html.DropDownListFor(m => m.status_id, null, new { @class = "form-control " + Model.Status.status1 + " " + ViewBag.myClass, @onchange = "$(this.form).submit();" })
+                    </td>
+                 }
+                
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.estimated_hours)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditForProject", "PBLItems", new { item_id = Model.pbl_item_id, project_id = Model.project_id }, null)
+                    @Html.ActionLink("Delete", "Delete", "PBLItems", new { id = Model.pbl_item_id }, null)
+                </td>
+            </tr>
+           }
+    
+
+

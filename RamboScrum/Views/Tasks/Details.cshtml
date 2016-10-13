@@ -1,0 +1,90 @@
+﻿@model RamboScrum.Models.Task
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Task</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.task_description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.task_description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estimated_hours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estimated_hours)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.task_priority)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.task_priority)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.assignment_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.assignment_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.completion_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.completion_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PBLItem.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PBLItem.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Person.first_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Person.first_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status.status1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status.status1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.task_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
